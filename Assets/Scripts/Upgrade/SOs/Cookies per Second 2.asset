@@ -17,4 +17,7 @@ MonoBehaviour:
   CurrentUpgradeCost: 1000
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 10 CPS
-  UpgradeButtonDescription: Increase your cookies per click by {0}
+  UpgradeButtonDescription: "\u041C\u0430\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+    \u0433\u043E\u0440\u043D"
+  DamageTypeDescription: DPS
+  LVLDescription: LVL

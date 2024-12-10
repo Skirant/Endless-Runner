@@ -17,4 +17,6 @@ MonoBehaviour:
   CurrentUpgradeCost: 125000000
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 500,000 CPC
-  UpgradeButtonDescription: Increase your cookies per click by {0}
+  UpgradeButtonDescription: "\u041F\u044B\u043B\u0430\u044E\u0449\u0438\u0439 \u043C\u043E\u043B\u043E\u0442"
+  DamageTypeDescription: Tap Damage
+  LVLDescription: LVL

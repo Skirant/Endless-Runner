@@ -11,6 +11,8 @@ public abstract class CookieUpgrade : ScriptableObject
     public string UpgradeButtonText;
     [TextArea(3, 10)]
     public string UpgradeButtonDescription;
+    public string DamageTypeDescription;
+    public string LVLDescription;
 
     public abstract void ApplyUpgrade();
 
