@@ -1,6 +1,6 @@
 {
     "redirection": "",
-    "documentation": "https://max-games.ru/plugin-yg",
+    "documentation": "https://max-games.ru/plugin-yg/",
     "chat": "https://t.me/pluginYG",
     "video": "https://www.youtube.com/playlist?list=PLjS5DHdpBH0Q9qKLenTNbYwaB5IIIsCya",
     "playerImage": "https://max-games.ru/public/pluginYG2/images/player.png",
@@ -8,13 +8,13 @@
     "modules": [
         {
             "name": "PluginYG2",
-            "version": "2.001",
+            "version": "2.002",
             "download": "https://max-games.ru/public/pluginYG2/other/PluginYG2.unitypackage",
             "doc": "https://max-games.ru/plugin-yg/doc/"
         },
         {
             "name": "YandexGames",
-            "version": "1.001",
+            "version": "1.002",
             "download": "https://max-games.ru/public/pluginYG2/platforms/YandexGames.unitypackage",
             "doc": "https://max-games.ru/plugin-yg/doc/",
             "platform": true
@@ -85,7 +85,7 @@
         },
         {
             "name": "AutoTranslateLangs",
-            "version": "1.0",
+            "version": "1.001",
             "download": "https://max-games.ru/public/pluginYG2/modules/AutoTranslateLangs.unitypackage",
             "doc": "https://max-games.ru/plugin-yg/doc/lang/",
             "dependencies": "Localization"
@@ -112,19 +112,19 @@
             "name": "StickyAdv",
             "version": "1.0",
             "download": "https://max-games.ru/public/pluginYG2/modules/StickyAdv.unitypackage",
-            "doc": ""
+            "doc": "https://max-games.ru/other/"
         },
         {
             "name": "ServerTime",
             "version": "1.0",
             "download": "https://max-games.ru/public/pluginYG2/modules/ServerTime.unitypackage",
-            "doc": ""
+            "doc": "https://max-games.ru/other/"
         },
         {
             "name": "Fullscreen",
             "version": "1.0",
             "download": "https://max-games.ru/public/pluginYG2/modules/Fullscreen.unitypackage",
-            "doc": ""
+            "doc": "https://max-games.ru/other/"
         },
         {
             "name": "Flags",
@@ -143,7 +143,7 @@
             "name": "TV",
             "version": "1.0",
             "download": "https://max-games.ru/public/pluginYG2/modules/TV.unitypackage",
-            "doc": "",
+            "doc": "https://max-games.ru/plugin-yg/doc/tv/",
             "dependencies": "EnvirData"
         },
         {
@@ -154,15 +154,15 @@
         },
         {
             "name": "QuitGameEvent",
-            "version": "1.0",
+            "version": "1.001",
             "download": "https://max-games.ru/public/pluginYG2/modules/QuitGameEvent.unitypackage",
-            "doc": ""
+            "doc": "https://max-games.ru/other/"
         },
         {
             "name": "Clipboard",
             "version": "1.0",
             "download": "https://max-games.ru/public/pluginYG2/modules/Clipboard.unitypackage",
-            "doc": ""
+            "doc": "https://max-games.ru/other/"
         }
     ]
 }

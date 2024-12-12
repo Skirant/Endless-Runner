@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3117742280921411149}
   - component: {fileID: 751033814166287169}
+  - component: {fileID: 4844772403777459181}
   m_Layer: 0
   m_Name: CookiePS
   m_TagString: Untagged
@@ -42,5 +43,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1be9c99ff95fd04e84be60936a06619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerDuration: 1
+--- !u!114 &4844772403777459181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4293724079831095888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a896a03557d1574c83989a8c960db82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

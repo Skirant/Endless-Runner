@@ -829,7 +829,7 @@ PlayerSettings:
     ReservedCFE: DOTWEEN
     Standalone: DOTWEEN;PLUGIN_YG_2
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN;PLUGIN_YG_2;RU_YG2;InterstitialAdv_yg
+    WebGL: DOTWEEN;PLUGIN_YG_2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg
     Windows Store Apps: DOTWEEN
     XboxOne: DOTWEEN
     iPhone: DOTWEEN
