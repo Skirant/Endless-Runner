@@ -7,6 +7,8 @@ public class RewardedAdManager : MonoBehaviour
     public string rewardID; // Идентификатор рекламы
     private CookieManager cookieManager;
 
+    public GameObject AdWindows;
+
     private void Start()
     {
         cookieManager = CookieManager.instance; // Получаем ссылку на CookieManager
@@ -31,7 +33,24 @@ public class RewardedAdManager : MonoBehaviour
     {
         if (id == rewardID)
         {
-            StartCoroutine(cookieManager.ActivateDoubleReward(120)); // Активируем бонус на 2 минуты
+            StartCoroutine(cookieManager.ActivateDoubleReward(60)); // Активируем бонус на 2 минуты
+            StartCoroutine(StartCountdown(60)); // Начинаем отсчет в консоли
+            AdWindows.SetActive(false);
         }
+    }
+
+    private IEnumerator StartCountdown(int seconds)
+    {
+        while (seconds > 0)
+        {
+            if (seconds % 5 == 0) // Проверяем, делится ли оставшееся время на 5
+            {
+                Debug.Log($"Осталось времени: {seconds} секунд");
+            }
+            yield return new WaitForSeconds(1); // Ждем 1 секунду
+            seconds--;
+        }
+
+        Debug.Log("Бонусное время истекло!");
     }
 }

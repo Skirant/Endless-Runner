@@ -25,9 +25,9 @@ public class UpgradeButtonReferences : MonoBehaviour
     }
 
     // Обновление уровня апгрейда
-    public void UpdateUpgradeLevel()
+    public void UpdateUpgradeLevel(int level)
     {
-        UpgradeLevel++;
+        UpgradeLevel = level; // Устанавливаем уровень
         UpgradeLevelText.text = UpgradeLevel.ToString();
     }
 }

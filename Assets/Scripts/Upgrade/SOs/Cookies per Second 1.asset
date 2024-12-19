@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Cookies per Second 1
   m_EditorClassIdentifier: 
   UpgradeAmount: 1
-  OriginalUpgradeCost: 1
-  CurrentUpgradeCost: 1
+  OriginalUpgradeCost: 10
+  CurrentUpgradeCost: 10
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 1 CPS
-  UpgradeButtonDescription: "\u041A\u0443\u0437\u043D\u0435\u0447\u043D\u044B\u0435
-    \u043C\u0435\u0445\u0430"
-  DamageTypeDescription: DPS
   LVLDescription: LVL
+  UpgradeButtonDescriptionRu: "\u041A\u0443\u0437\u043D\u0435\u0447\u043D\u044B\u0435
+    \u043C\u0435\u0445\u0430"
+  UpgradeButtonDescriptionEn: 'Forge Bellows '
+  DamageTypeDescriptionRu: "\u0423\u0412\u0421"
+  DamageTypeDescriptionEn: DPS

@@ -17,6 +17,8 @@ MonoBehaviour:
   CurrentUpgradeCost: 725000000
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 5,000,000 CPS
-  UpgradeButtonDescription: "\u042D\u0444\u0438\u0440\u043D\u0430\u044F \u043A\u0443\u0437\u043D\u044F"
-  DamageTypeDescription: DPS
   LVLDescription: LVL
+  UpgradeButtonDescriptionRu: "\u042D\u0444\u0438\u0440\u043D\u0430\u044F \u043A\u0443\u0437\u043D\u044F"
+  UpgradeButtonDescriptionEn: Ethereal Forge
+  DamageTypeDescriptionRu: "\u0423\u0412\u0421"
+  DamageTypeDescriptionEn: DPS

@@ -7,12 +7,14 @@ public class PopupText : MonoBehaviour
     [SerializeField] private float _velocityDecayRate = 1500f; // Скорость снижения начальной скорости
     [SerializeField] private float _timeBeforeFadeStarts = 0.6f; // Время перед началом исчезновения текста
     [SerializeField] private float _fadeSpeed = 3f; // Скорость затухания текста
+    [SerializeField] private AudioClip _clickSound; // Звук, воспроизводимый при клике
 
     private TextMeshProUGUI _clickAmountText; // Ссылка на компонент TextMeshPro для отображения текста
     private Vector2 _currentVelocity; // Текущая скорость текста
     private Color _startColor; // Начальный цвет текста
     private float _timer; // Таймер для отслеживания времени жизни текста
     private float _textAlpha; // Прозрачность текста
+    private AudioSource _audioSource; // Источник звука
 
     private void OnEnable()
     {
@@ -32,6 +34,17 @@ public class PopupText : MonoBehaviour
 
         // Устанавливаем прозрачность текста на максимум
         _textAlpha = 1f;
+
+        // Получаем или добавляем AudioSource
+        if (!_audioSource)
+        {
+            _audioSource = gameObject.GetComponent<AudioSource>();
+            if (!_audioSource)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+                _audioSource.playOnAwake = false; // Звук не должен проигрываться автоматически
+            }
+        }
     }
 
     /// <summary>
@@ -59,15 +72,32 @@ public class PopupText : MonoBehaviour
     /// <param name="amount">Количество, которое будет отображено во всплывающем тексте.</param>
     public void Init(double amount, Vector3 spawnPosition)
     {
-        // Устанавливаем текст для отображения
-        _clickAmountText.text = "+" + amount.ToString("0");
-
         // Устанавливаем позицию объекта
         transform.position = spawnPosition;
 
         // Генерируем случайное движение для естественности
         float randomX = Random.Range(-50f, 50f); // Небольшой разброс
         _currentVelocity = new Vector2(randomX, _startingVelocity);
+
+        // Округляем и устанавливаем текст с префиксом +
+        CookieDisplay cookieDisplay = CookieManager.instance.GetComponent<CookieDisplay>(); // Получаем CookieDisplay
+        if (cookieDisplay != null)
+        {
+            cookieDisplay.UpdateCookieText(amount, _clickAmountText, "", "+");
+        }
+        else
+        {
+            // Если CookieDisplay не найден, используем резервное форматирование
+            _clickAmountText.text = "+" + amount.ToString("0");
+        }
+
+        // Воспроизведение звука при инициализации
+        /*if (_audioSource && _clickSound)
+        {
+            _audioSource.PlayOneShot(_clickSound);
+        }*/
+
+        FindAnyObjectByType<AudioManager>().Play("Click");
     }
 
     private void Update()
@@ -94,3 +124,4 @@ public class PopupText : MonoBehaviour
         }
     }
 }
+

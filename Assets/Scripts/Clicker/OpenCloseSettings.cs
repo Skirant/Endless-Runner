@@ -46,6 +46,8 @@ public class OpenCloseSettings : MonoBehaviour
             _animator.SetTrigger("Close");
             _settingsButton.SetActive(true);
         }
+
+        FindAnyObjectByType<AudioManager>().Play("Open");
     }
 
     public void OnResumeButtonPress()
@@ -56,6 +58,7 @@ public class OpenCloseSettings : MonoBehaviour
             _settingsButton.SetActive(true);
             _animator.SetTrigger("Close");
         }
+        FindAnyObjectByType<AudioManager>().Play("Open");
     }
 
     public void OnCloseAnimationEnd()

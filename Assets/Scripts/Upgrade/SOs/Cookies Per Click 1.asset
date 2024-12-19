@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Cookies Per Click 1
   m_EditorClassIdentifier: 
   UpgradeAmount: 1
-  OriginalUpgradeCost: 1
-  CurrentUpgradeCost: 1
+  OriginalUpgradeCost: 10
+  CurrentUpgradeCost: 10
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 1 CPC
-  UpgradeButtonDescription: "\u0420\u0436\u0430\u0432\u044B\u0439 \u043C\u043E\u043B\u043E\u0442"
-  DamageTypeDescription: Tap Damage
   LVLDescription: LVL
+  UpgradeButtonDescriptionRu: "\u0420\u0436\u0430\u0432\u044B\u0439 \u043C\u043E\u043B\u043E\u0442"
+  UpgradeButtonDescriptionEn: Rusty Hammer
+  DamageTypeDescriptionRu: "\u0423\u0420\u041D \u043A\u0430\u0441\u0430\u043D\u0438\u044F"
+  DamageTypeDescriptionEn: Tap Damage

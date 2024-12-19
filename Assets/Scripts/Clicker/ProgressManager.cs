@@ -23,6 +23,8 @@ public class ProgressManager : MonoBehaviour
         // Получаем ссылку на CookieManager
         cookieManager = CookieManager.instance;
         UpdateUI();
+
+        _win.SetActive(false);
     }
 
     void Update()

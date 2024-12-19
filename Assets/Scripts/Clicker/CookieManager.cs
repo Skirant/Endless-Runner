@@ -1,8 +1,8 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.PackageManager.UI;
 using System.Collections;
+using YG;
 
 public class CookieManager : MonoBehaviour
 {
@@ -55,6 +55,10 @@ public class CookieManager : MonoBehaviour
 
         _cookieDisplay = GetComponent<CookieDisplay>();
 
+        // Загрузка количества печенек
+        CurrentCookieCount = YG2.saves.savedCookieCount;
+        CurrentCookiesPerSecond = YG2.saves.savedCookiesPerSecond;
+
         // Debug.Log("Initializing Cookie Manager...");
         UpdateCookieUI();
         UpdateCookiesPerSecondUI();
@@ -71,6 +75,10 @@ public class CookieManager : MonoBehaviour
 
     private void Start()
     {
+        // Применяем сохранённые апгрейды
+        GetComponent<InitializeUpgrades>().ApplyLoadedUpgrades();
+
+        // Другие действия
         animator = _upgradeCanvas.GetComponent<Animator>();
     }
 
@@ -120,7 +128,7 @@ public class CookieManager : MonoBehaviour
         Vector3 worldPoint = rectTransform.TransformPoint(randomPoint);
 
         // Создаем всплывающий текст
-        PopupText.Create(1 + CookiesPerClickUpgrade * RewardMultiplier, worldPoint);
+        PopupText.Create((1 + CookiesPerClickUpgrade) * RewardMultiplier, worldPoint);
     }
 
     private void CookiesScaleBack()
@@ -136,7 +144,8 @@ public class CookieManager : MonoBehaviour
     public void IncreaseCookie()
     {
         CurrentCookieCount += (1 + CookiesPerClickUpgrade) * RewardMultiplier;
-       // Debug.Log($"Current Cookie Count: {CurrentCookieCount}");
+        YG2.saves.savedCookieCount = CurrentCookieCount; // Сохраняем значение
+        YG2.SaveProgress(); // Вызываем сохранение
         UpdateCookieUI();
     }
 
@@ -162,9 +171,13 @@ public class CookieManager : MonoBehaviour
 
     private void UpdateCookiesPerSecondUI()
     {
-       // Debug.Log($"Updating Cookies Per Second UI: {passiveIncomePerSecond}");
-        _cookieDisplay.UpdateCookieText(passiveIncomePerSecond, _cookiesPerSecondText, " M/C");
+        // Debug.Log($"Updating Cookies Per Second UI: {passiveIncomePerSecond}");
+        _cookieDisplay.UpdateCookieText(CurrentCookiesPerSecond, _cookiesPerSecondText, "");
     }
+    /*private void UpdateCookiesPerSecondUI()
+    {
+        _cookieDisplay.UpdateCookieText(CurrentCookiesPerSecond, _cookiesPerSecondText, " CPS");
+    }*/
 
     #endregion
 
@@ -187,14 +200,16 @@ public class CookieManager : MonoBehaviour
 
         isSettingsOpen = true;
         animator.SetTrigger("Open");
+        FindAnyObjectByType<AudioManager>().Play("Open");
     }
 
     public void OnResumeButtonPress()
     {
-        Debug.Log("Resume button pressed!");
+        //Debug.Log("Resume button pressed!");
         isSettingsOpen = false;
         //MainGameCanvas.SetActive(true);
         animator.SetTrigger("Close");
+        FindAnyObjectByType<AudioManager>().Play("Open");
     }
 
     /*public void OnCloseAnimationEnd()
@@ -209,26 +224,26 @@ public class CookieManager : MonoBehaviour
 
     public void SimpleCookieIncrease(double amount)
     {
-        Debug.Log($"Simple Cookie Increase: {amount}");
         CurrentCookieCount += amount;
+        YG2.saves.savedCookieCount = CurrentCookieCount; // Сохраняем значение
+        YG2.SaveProgress();
         UpdateCookieUI();
     }
 
     public void SimpleCookiePerSecondIncrease(double amount)
     {
-        Debug.Log($"Increasing Passive Income Per Second: {amount}");
         passiveIncomePerSecond += amount; // Увеличиваем пассивный доход
+        CurrentCookiesPerSecond = passiveIncomePerSecond; // Обновляем текущее значение CPS
+
+        YG2.saves.savedCookiesPerSecond = CurrentCookiesPerSecond; // Сохраняем CPS
+        YG2.SaveProgress(); // Сохраняем изменения
+
         UpdateCookiesPerSecondUI();
 
         if (activeCookiesPerSecondObj == null)
         {
-            Debug.Log("Creating CookiesPerSecond object.");
             activeCookiesPerSecondObj = Instantiate(CookiesPerSecondObjToSpawn, MainGameCanvas.transform);
-            activeCookiesPerSecondObj.transform.SetParent(MainGameCanvas.transform, false); // Устанавливаем родителя и сохраняем локальные координаты
-        }
-        else
-        {
-            Debug.Log("CookiesPerSecond object already exists. Skipping creation.");
+            activeCookiesPerSecondObj.transform.SetParent(MainGameCanvas.transform, false);
         }
     }
 
@@ -238,34 +253,36 @@ public class CookieManager : MonoBehaviour
 
     public void OnUpgradeButtonClick(CookieUpgrade upgrade, UpgradeButtonReferences buttonRef)
     {
-        Debug.Log($"Upgrade button clicked for: {upgrade.name}");
         if (CurrentCookieCount >= upgrade.CurrentUpgradeCost)
         {
             // Применяем улучшение
             upgrade.ApplyUpgrade();
 
-            // Увеличиваем уровень и сумму UpgradeAmount для конкретной кнопки
-            buttonRef.UpdateUpgradeLevel();
+            // Увеличиваем уровень улучшения в данных
+            upgrade.UpgradeLevel++;
+
+            // Синхронизация UI с данными
+            buttonRef.UpdateUpgradeLevel(upgrade.UpgradeLevel);
             buttonRef.UpdateTotalUpgradeAmount(upgrade.UpgradeAmount);
 
-            // Уменьшаем текущее количество печенек
+            // Вычитаем стоимость из текущего количества печенек
             CurrentCookieCount -= upgrade.CurrentUpgradeCost;
-            Debug.Log($"Upgrade applied. Current Cookie Count: {CurrentCookieCount}");
 
-            // Обновляем пользовательский интерфейс
+            // Обновляем UI
             UpdateCookieUI();
 
-            // Пересчитываем стоимость следующего улучшения
+            // Сохранение состояния
+            int index = System.Array.IndexOf(CookieUpgrades, upgrade);
+            YG2.saves.savedUpgradeLevels[index] = upgrade.UpgradeLevel;
+            YG2.saves.savedUpgradeCosts[index] = upgrade.CurrentUpgradeCost;
+            YG2.SaveProgress();
+
+            // Обновляем стоимость следующего улучшения
             upgrade.CurrentUpgradeCost = Mathf.Round(
                 (float)(upgrade.CurrentUpgradeCost * (1 + upgrade.CostIncreaseMultiplierPerPurchase))
             );
 
-            // Обновляем текст на кнопке
-            buttonRef.UpgradeCostText.text = "Cost: " + upgrade.CurrentUpgradeCost;
-        }
-        else
-        {
-            Debug.Log("Not enough cookies for upgrade.");
+            buttonRef.UpgradeCostText.text = "" + upgrade.CurrentUpgradeCost;
         }
     }
 

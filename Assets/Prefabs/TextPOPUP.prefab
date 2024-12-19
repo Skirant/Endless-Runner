@@ -153,3 +153,4 @@ MonoBehaviour:
   _velocityDecayRate: 1500
   _timeBeforeFadeStarts: 0.6
   _fadeSpeed: 3
+  _clickSound: {fileID: 8300000, guid: 23da6a9f92d24ca45bc4e062882c1f34, type: 3}

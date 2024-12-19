@@ -17,6 +17,8 @@ MonoBehaviour:
   CurrentUpgradeCost: 57500000
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 500,000 CPS
-  UpgradeButtonDescription: "\u0414\u0440\u0430\u043A\u043E\u043D\u0438\u0439 \u0433\u043E\u0440\u043D"
-  DamageTypeDescription: DPS
   LVLDescription: LVL
+  UpgradeButtonDescriptionRu: "\u0414\u0440\u0430\u043A\u043E\u043D\u0438\u0439 \u0433\u043E\u0440\u043D"
+  UpgradeButtonDescriptionEn: Dragon Furnace
+  DamageTypeDescriptionRu: "\u0423\u0412\u0421"
+  DamageTypeDescriptionEn: DPS

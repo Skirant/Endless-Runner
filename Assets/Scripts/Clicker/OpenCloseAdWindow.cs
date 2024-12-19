@@ -43,6 +43,8 @@ public class OpenCloseAdWindow : MonoBehaviour
             _adButton.SetActive(true);
             _animator.SetTrigger("Close");
         }
+
+        FindAnyObjectByType<AudioManager>().Play("Open");
     }
 
     public void OnResumeButtonPress()
@@ -53,6 +55,7 @@ public class OpenCloseAdWindow : MonoBehaviour
             _adButton.SetActive(true);
             _animator.SetTrigger("Close");
         }
+        FindAnyObjectByType<AudioManager>().Play("Open");
     }
 
     public void OnCloseAnimationEnd()

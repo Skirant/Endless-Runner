@@ -17,7 +17,9 @@ MonoBehaviour:
   CurrentUpgradeCost: 7500
   CostIncreaseMultiplierPerPurchase: 0.08
   UpgradeButtonText: 500 CPC
-  UpgradeButtonDescription: "\u0417\u0430\u043A\u0430\u043B\u0435\u043D\u043D\u044B\u0439
-    \u043C\u043E\u043B\u043E\u0442"
-  DamageTypeDescription: Tap Damage
   LVLDescription: LVL
+  UpgradeButtonDescriptionRu: "\u0417\u0430\u043A\u0430\u043B\u0435\u043D\u043D\u044B\u0439
+    \u043C\u043E\u043B\u043E\u0442"
+  UpgradeButtonDescriptionEn: 'Tempered Hammer '
+  DamageTypeDescriptionRu: "\u0423\u0420\u041D \u043A\u0430\u0441\u0430\u043D\u0438\u044F"
+  DamageTypeDescriptionEn: Tap Damage
