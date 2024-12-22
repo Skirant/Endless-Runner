@@ -8,6 +8,10 @@ public class RewardedAdManager : MonoBehaviour
     private CookieManager cookieManager;
 
     public GameObject AdWindows;
+    public GameObject AdActivation;
+    public GameObject AdError;
+
+    public int TimerAd = 60;
 
     private void Start()
     {
@@ -22,21 +26,28 @@ public class RewardedAdManager : MonoBehaviour
     private void OnEnable()
     {
         YG2.onRewardAdv += OnReward;
+        YG2.onErrorRewardedAdv += OnErrorRewardedAdv;
     }
 
     private void OnDisable()
     {
         YG2.onRewardAdv -= OnReward;
+        YG2.onErrorRewardedAdv -= OnErrorRewardedAdv;
     }
 
     private void OnReward(string id)
     {
         if (id == rewardID)
         {
-            StartCoroutine(cookieManager.ActivateDoubleReward(60)); // Активируем бонус на 2 минуты
-            StartCoroutine(StartCountdown(60)); // Начинаем отсчет в консоли
+            StartCoroutine(cookieManager.ActivateDoubleReward(TimerAd)); // Активируем бонус на 2 минуты
+            StartCoroutine(StartCountdown(TimerAd)); // Начинаем отсчет в консоли
             AdWindows.SetActive(false);
+            AdActivation.SetActive(true);
         }
+    }
+    private void OnErrorRewardedAdv()
+    {
+        AdError.SetActive(true);
     }
 
     private IEnumerator StartCountdown(int seconds)

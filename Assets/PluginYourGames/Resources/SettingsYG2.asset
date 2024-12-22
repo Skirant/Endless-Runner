@@ -56,14 +56,14 @@ MonoBehaviour:
     loadAdv: 0
     testFailAds: 0
   Templates:
-    logoImageFormat: 0
+    logoImageFormat: 1
     backgroundImgFormat: 0
     gradientBackgroundByLoadGame:
       radial: 0
       angleInclination: 140
-      color1: {r: 1, g: 0.831, b: 0.149, a: 1}
-      color2: {r: 0.36, g: 0.09, b: 1, a: 1}
-    customProgressBar: 1
+      color1: {r: 0, g: 0.2547171, b: 0.764151, a: 1}
+      color2: {r: 0.011764707, g: 0.039215688, b: 0.13725491, a: 1}
+    customProgressBar: 0
     progressBarSettigs:
       round: 1
       width: 30
